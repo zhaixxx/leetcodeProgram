@@ -19,9 +19,25 @@ func TestArith_conver_Conver(t *testing.T) {
 func TestArith_lecode103_Cecode103(t *testing.T) {
 	arith := Arith_lecode103{
 		root: &TreeNode{
-			val:   "1",
-			left:  nil,
-			right: nil,
+			val: 1,
+			left: &TreeNode{
+				val: 2,
+				left: &TreeNode{
+					val:   4,
+					left:  nil,
+					right: nil,
+				},
+				right: &TreeNode{
+					val:   5,
+					left:  nil,
+					right: nil,
+				},
+			},
+			right: &TreeNode{
+				val:   3,
+				left:  nil,
+				right: nil,
+			},
 		},
 	}
 	arith.Cecode103()

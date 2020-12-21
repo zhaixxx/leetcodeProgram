@@ -30,35 +30,53 @@ type Arith_lecode103 struct {
 	root *TreeNode
 }
 type TreeNode struct {
-	val   string
+	val   int
 	left  *TreeNode
 	right *TreeNode
 }
 
 func (p *Arith_lecode103) Cecode103() [][]int {
 	var ans [][]int
+	//边界处理
 	if p.root == nil {
 		return ans
 	}
 	queue := make([]*TreeNode, 1)
+	//防止node与nil组合在一起
 	if queue[0] == nil {
 		queue[0] = p.root
 	} else {
 		queue = append(queue, p.root)
 	}
-	log.Info("Start queue: ", queue)
+	//判断是否从左向右遍历
+	//若为false则从右向左遍历
+	leftToRight := true
 	for len(queue) > 0 {
 		//得到队列长度
-		len := len(queue)
+		lenn := len(queue)
 		//用于存储同一深度节点的值
-		res := make([]int, 1)
+		res := make([]int, lenn)
 		//遍历同一深度全部节点
-		for i := 0; i < len; i++ {
-
+		for i := 0; i < lenn; i++ {
+			root := queue[i]
+			if leftToRight {
+				res[i] = root.val
+			} else {
+				res[lenn-i-1] = root.val
+			}
+			if root.left != nil {
+				queue = append(queue, root.left)
+			}
+			if root.right != nil {
+				queue = append(queue, root.right)
+			}
 		}
-		queue = queue[1:]
+		log.Info("The res is : ", res)
+		ans = append(ans, res)
+		queue = queue[lenn:]
+		leftToRight = !leftToRight
 	}
-	log.Info("End queue: ", queue)
+	log.Info("End ans: ", ans)
 	return ans
 }
 func (p *Arith_conver) Coir(str string, n int) string {

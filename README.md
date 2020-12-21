@@ -3,3 +3,4 @@
 |  题目   | api  |
 |  ----  | ----  |
 | leetcode103  | Cecode103 |
+| leetcode6 Z字形变换  | Coir |

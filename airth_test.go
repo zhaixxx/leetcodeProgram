@@ -49,5 +49,12 @@ func TestTrap_Leetcode42(t *testing.T) {
 		ans:    0,
 	}
 	arith.Leetcode42()
-
+}
+func TestArith_daily_Leetcode739(t *testing.T) {
+	num := []int{73, 74, 75, 71, 69, 72, 76, 73}
+	arith := Arith_daily{
+		temp: num,
+		ans:  nil,
+	}
+	arith.Leetcode739()
 }

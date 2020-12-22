@@ -39,12 +39,40 @@ type Arith_Trap struct {
 	ans    int
 }
 
+type Arith_daily struct {
+	temp []int
+	ans  []int
+}
+
+/*
+	单调栈
+	将当前读取的数据和栈内数据进行比较，
+	如果当前数据比栈内数据大则输出，否则放入栈
+	因此，栈内元素的值一定是单调的
+*/
+func (p *Arith_daily) Leetcode739() {
+	stack := []int{}
+	p.ans = make([]int, len(p.temp))
+	for i := 0; i < len(p.temp); i++ {
+		temp := p.temp[i]
+		for len(stack) > 0 && temp > p.temp[stack[len(stack)-1]] {
+			index := stack[len(stack)-1]
+			p.ans[index] = i - index
+			stack = stack[:len(stack)-1]
+		}
+		stack = append(stack, i)
+	}
+	log.Info("ans: ", p.ans)
+}
+
 /*
 	接雨水，暴力解法，根据当前柱子的高度h，横向两边查找比h高的柱子，
 	取两边最高柱子的最小值，时间复杂度O(n^2)。
-	该题可以优化，通过一次for循环遍历整个数组，通过单向流水机制，
+	该题可以优化，
+	1、通过一次for循环遍历整个数组，通过单向流水机制，
 	从左到右取最大值，从右到左取最小值，最后取相同索引下的最小值进行相加
 	时间复杂度O(n)
+	2、单调栈
 */
 func (p *Arith_Trap) Leetcode42() {
 	for i := 0; i < len(p.height); i++ {

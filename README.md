@@ -5,3 +5,4 @@
 |  ----  | ----  |
 | leetcode103  二叉树的锯齿形层次遍历  | Cecode103 |
 | leetcode6 Z字形变换  | Coir |
+| leetcode42 接雨水  | Leetcode42 |

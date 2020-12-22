@@ -39,6 +39,13 @@ type Arith_Trap struct {
 	ans    int
 }
 
+/*
+	接雨水，暴力解法，根据当前柱子的高度h，横向两边查找比h高的柱子，
+	取两边最高柱子的最小值，时间复杂度O(n^2)。
+	该题可以优化，通过一次for循环遍历整个数组，通过单向流水机制，
+	从左到右取最大值，从右到左取最小值，最后取相同索引下的最小值进行相加
+	时间复杂度O(n)
+*/
 func (p *Arith_Trap) Leetcode42() {
 	for i := 0; i < len(p.height); i++ {
 		max_lefy := p.height[i]

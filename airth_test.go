@@ -42,3 +42,12 @@ func TestArith_lecode103_Cecode103(t *testing.T) {
 	}
 	arith.Cecode103()
 }
+func TestTrap_Leetcode42(t *testing.T) {
+	num := []int{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1}
+	arith := Arith_Trap{
+		height: num,
+		ans:    0,
+	}
+	arith.Leetcode42()
+
+}

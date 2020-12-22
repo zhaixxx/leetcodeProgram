@@ -34,6 +34,35 @@ type TreeNode struct {
 	left  *TreeNode
 	right *TreeNode
 }
+type Arith_Trap struct {
+	height []int
+	ans    int
+}
+
+func (p *Arith_Trap) Leetcode42() {
+	for i := 0; i < len(p.height); i++ {
+		max_lefy := p.height[i]
+		max_right := p.height[i]
+		for j := i; j >= 0; j-- {
+			if max_lefy < p.height[j] {
+				max_lefy = p.height[j]
+			}
+		}
+		for j := i; j < len(p.height); j++ {
+			if max_right < p.height[j] {
+				max_right = p.height[j]
+			}
+		}
+		if max_right >= max_lefy {
+			p.ans = p.ans + max_lefy - p.height[i]
+		} else {
+			p.ans = p.ans + max_right - p.height[i]
+		}
+		log.Info("max_lefy: ", max_lefy, "___max_right: ", max_right, "___i: ", i)
+		log.Info("ans: ", p.ans)
+	}
+
+}
 
 func (p *Arith_lecode103) Cecode103() [][]int {
 	var ans [][]int
@@ -79,6 +108,7 @@ func (p *Arith_lecode103) Cecode103() [][]int {
 	log.Info("End ans: ", ans)
 	return ans
 }
+
 func (p *Arith_conver) Coir(str string, n int) string {
 	if p.str == nil {
 		p.str = make(map[int]interface{}, n+1)

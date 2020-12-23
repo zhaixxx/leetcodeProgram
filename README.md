@@ -7,4 +7,5 @@
 | leetcode6 Z字形变换  | Coir |
 | leetcode42 接雨水  | Leetcode42 |
 | leetcode739 每日温度  | Leetcode739 |
-| leetcode739 买卖股票的最佳时机  | Leetcode121 |
+| leetcode121 买卖股票的最佳时机  | Leetcode121 |
+| leetcode122 买卖股票的最佳时机II  | Leetcode122 |

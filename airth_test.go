@@ -16,6 +16,15 @@ func TestArith_conver_Conver(t *testing.T) {
 	arith := Arith_conver{}
 	arith.Coir(str, n)
 }
+func TestArith_profit_Leetcode122(t *testing.T) {
+	num := []int{7, 1, 5, 3, 6, 4}
+	arith := Arith_profit{
+		prices: num,
+		ans:    0,
+	}
+	arith.Leetcode122()
+}
+
 func TestArith_lecode103_Cecode103(t *testing.T) {
 	arith := Arith_lecode103{
 		root: &TreeNode{

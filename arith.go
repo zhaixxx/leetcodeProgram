@@ -50,6 +50,30 @@ type Arith_profit struct {
 }
 
 /*
+	变种，可以购买多个股票，但是只能单线操作，不能手持多股
+	把每一次上坡都计算出并相加即可 需要求边界情况
+*/
+func (p *Arith_profit) Leetcode122() {
+	if len(p.prices) == 0 {
+		return
+	}
+	minprice := p.prices[0]
+	sumprice := 0
+	for i := 1; i < len(p.prices); i++ {
+		if p.prices[i-1] > p.prices[i] {
+			p.ans += sumprice
+			minprice = p.prices[i]
+			sumprice = 0
+		} else {
+			sumprice = p.prices[i] - minprice
+		}
+		log.Info("minprice: ", minprice, ", p.prices: ", p.prices[i], ", p.ans: ", p.ans, ", sumprice: ", sumprice)
+	}
+	p.ans += sumprice
+	log.Info("ans: ", p.ans)
+}
+
+/*
 	股票取最大利润，可以暴力求解，时间复杂度应该是O(n^2)
 	但是还有一种解法，假设当前是第i天，我们用一个变量存储[0-i）天的最小价格，
 	那么 price[i]-minprice就是我们需要的当天的最大利润，以此类推遍历整个数组

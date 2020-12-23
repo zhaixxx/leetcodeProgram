@@ -43,6 +43,24 @@ type Arith_daily struct {
 	temp []int
 	ans  []int
 }
+type Arith_profit struct {
+	prices []int
+	ans    int
+}
+
+func (p *Arith_profit) Leetcode121() {
+	lenn := len(p.prices)
+	minprice := p.prices[0]
+
+	for i := 0; i < lenn; i++ {
+		if minprice > p.prices[i] {
+			minprice = p.prices[i]
+		} else if p.ans > p.prices[i]-minprice {
+			p.ans = p.prices[i] - minprice
+		}
+	}
+	log.Info("maxPrice: ", p.ans)
+}
 
 /*
 	单调栈

@@ -58,3 +58,11 @@ func TestArith_daily_Leetcode739(t *testing.T) {
 	}
 	arith.Leetcode739()
 }
+func TestArith_profie_Leetcode121(t *testing.T) {
+	num := []int{7, 1, 5, 3, 6, 4}
+	arith := Arith_profit{
+		prices: num,
+		ans:    0,
+	}
+	arith.Leetcode121()
+}

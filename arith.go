@@ -3,6 +3,7 @@ package arith
 import (
 	"fmt"
 	"github.com/labstack/gommon/log"
+
 	"math"
 	"strings"
 )
@@ -48,14 +49,23 @@ type Arith_profit struct {
 	ans    int
 }
 
+/*
+	股票取最大利润，可以暴力求解，时间复杂度应该是O(n^2)
+	但是还有一种解法，假设当前是第i天，我们用一个变量存储[0-i）天的最小价格，
+	那么 price[i]-minprice就是我们需要的当天的最大利润，以此类推遍历整个数组
+	时间复杂度O(n)
+*/
 func (p *Arith_profit) Leetcode121() {
+	if len(p.prices) == 0 {
+		return
+	}
 	lenn := len(p.prices)
 	minprice := p.prices[0]
 
 	for i := 0; i < lenn; i++ {
 		if minprice > p.prices[i] {
 			minprice = p.prices[i]
-		} else if p.ans > p.prices[i]-minprice {
+		} else if p.ans < p.prices[i]-minprice {
 			p.ans = p.prices[i] - minprice
 		}
 	}

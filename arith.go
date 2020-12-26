@@ -48,6 +48,37 @@ type Arith_profit struct {
 	prices []int
 	ans    int
 }
+type Arith_nnum struct {
+	num  []int
+	num2 []int
+	ans  []int
+}
+
+func (p *Arith_nnum) MergeTwoNum() []int {
+	lena := len(p.num)
+	lenb := len(p.num2)
+	p.ans = make([]int, 0)
+	for i, j := 0, 0; i+j < lena+lenb; {
+		if i >= lena {
+			p.ans = append(p.ans, p.num2[j:]...)
+			break
+		}
+		if j >= lenb {
+			p.ans = append(p.ans, p.num[i:]...)
+			break
+		}
+		if p.num[i] >= p.num2[j] {
+			p.ans = append(p.ans, p.num2[j])
+			j++
+		} else if p.num[i] < p.num2[j] {
+			p.ans = append(p.ans, p.num[i])
+			i++
+		}
+	}
+	log.Info(p.ans)
+	return p.ans
+
+}
 
 /*
 	变种，可以购买多个股票，但是只能单线操作，不能手持多股

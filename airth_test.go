@@ -42,6 +42,14 @@ func TestArith_lecode103_Cecode103(t *testing.T) {
 	}
 	arith.Cecode103()
 }
+func TestArith_substring_SubstringFromLong(t *testing.T) {
+	str := "abcabcbb"
+	arith := Arith_substring{
+		str: str,
+		ans: "",
+	}
+	arith.SubstringFromLongTew()
+}
 func TestTrap_Leetcode42(t *testing.T) {
 	num := []int{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1}
 	arith := Arith_Trap{

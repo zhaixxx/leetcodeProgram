@@ -47,6 +47,50 @@ type Arith_profit struct {
 	prices []int
 	ans    int
 }
+type Arith_substring struct {
+	str    string
+	ans    string
+	length int
+}
+
+func (p *Arith_substring) SubstringFromLongTew() int {
+	sigle := make(map[string]int)
+	for i, j := 0, 0; j < len(p.str); j++ {
+		if num, ok := sigle[string(p.str[j])]; ok {
+			i = max(num+1, i)
+		}
+		p.length = max(j-i+1, p.length)
+		sigle[string(p.str[j])] = j
+	}
+	log.Info("length: ", p.length)
+	return p.length
+}
+func (p *Arith_substring) SubstringFromLong() string {
+	sigle := make(map[string]int)
+	str := ""
+	count := -1
+	left := 0
+	for i := 0; i < len(p.str); i++ {
+		if c, ok := sigle[string(p.str[i])]; !ok || c < count {
+			str = str + string(p.str[i])
+			sigle[string(p.str[i])] = i
+		} else {
+			sigle[string(p.str[i])] = i
+			if len(str)-left > len(p.ans) {
+				p.ans = str[left:]
+			}
+			str = str + string(p.str[i])
+			//str = str[c+1:]
+			left = c + 1
+			count = c + 1
+		}
+	}
+	if len(p.ans) < len(str)-left {
+		p.ans = str[left:]
+	}
+	log.Info("string is :", p.ans)
+	return p.ans
+}
 
 func (p *Arith_profit) Leetcode121() {
 	lenn := len(p.prices)

@@ -7,3 +7,5 @@
 | leetcode6 Z字形变换  | Coir |
 | leetcode42 接雨水  | Leetcode42 |
 | leetcode739 每日温度  | Leetcode739 |
+|最长字符字串|SubstringFromLong|
+| |SubstringFromLongTew|

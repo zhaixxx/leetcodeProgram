@@ -91,8 +91,72 @@ func (p *Arith_substring) SubstringFromLong() string {
 	log.Info("string is :", p.ans)
 	return p.ans
 }
+type Arith_nnum struct {
+	num  []int
+	num2 []int
+	ans  []int
+}
 
+func (p *Arith_nnum) MergeTwoNum() []int {
+	lena := len(p.num)
+	lenb := len(p.num2)
+	p.ans = make([]int, 0)
+	for i, j := 0, 0; i+j < lena+lenb; {
+		if i >= lena {
+			p.ans = append(p.ans, p.num2[j:]...)
+			break
+		}
+		if j >= lenb {
+			p.ans = append(p.ans, p.num[i:]...)
+			break
+		}
+		if p.num[i] >= p.num2[j] {
+			p.ans = append(p.ans, p.num2[j])
+			j++
+		} else if p.num[i] < p.num2[j] {
+			p.ans = append(p.ans, p.num[i])
+			i++
+		}
+	}
+	log.Info(p.ans)
+	return p.ans
+
+}
+
+/*
+	变种，可以购买多个股票，但是只能单线操作，不能手持多股
+	把每一次上坡都计算出并相加即可 需要求边界情况
+*/
+func (p *Arith_profit) Leetcode122() {
+	if len(p.prices) == 0 {
+		return
+	}
+	minprice := p.prices[0]
+	sumprice := 0
+	for i := 1; i < len(p.prices); i++ {
+		if p.prices[i-1] > p.prices[i] {
+			p.ans += sumprice
+			minprice = p.prices[i]
+			sumprice = 0
+		} else {
+			sumprice = p.prices[i] - minprice
+		}
+		log.Info("minprice: ", minprice, ", p.prices: ", p.prices[i], ", p.ans: ", p.ans, ", sumprice: ", sumprice)
+	}
+	p.ans += sumprice
+	log.Info("ans: ", p.ans)
+}
+
+/*
+	股票取最大利润，可以暴力求解，时间复杂度应该是O(n^2)
+	但是还有一种解法，假设当前是第i天，我们用一个变量存储[0-i）天的最小价格，
+	那么 price[i]-minprice就是我们需要的当天的最大利润，以此类推遍历整个数组
+	时间复杂度O(n)
+*/
 func (p *Arith_profit) Leetcode121() {
+	if len(p.prices) == 0 {
+		return
+	}
 	lenn := len(p.prices)
 	minprice := p.prices[0]
 

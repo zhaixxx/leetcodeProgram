@@ -33,7 +33,16 @@ func TestArith_profit_Leetcode122(t *testing.T) {
 	}
 	arith.Leetcode122()
 }
-
+func TestListNode(t *testing.T) {
+	head := ListNode{
+		Val: 1,
+		Next: &ListNode{
+			Val:  0,
+			Next: nil,
+		},
+	}
+	head.swapTwoNode(&head)
+}
 func TestArith_lecode103_Cecode103(t *testing.T) {
 	arith := Arith_lecode103{
 		root: &TreeNode{

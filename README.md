@@ -7,8 +7,10 @@
 | leetcode6 Z字形变换  | Coir |
 | leetcode42 接雨水  | Leetcode42 |
 | leetcode739 每日温度  | Leetcode739 |
+|链表两两互换|swapTwoNode|
 |最长字符字串|SubstringFromLong|
 | |SubstringFromLongTew|
 | leetcode121 买卖股票的最佳时机  | Leetcode121 |
 | leetcode122 买卖股票的最佳时机II  | Leetcode122 |
 | 合并两个有序数组 | MergeTwoNum |
+|简化有效路径|LeetcodeClean|

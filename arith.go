@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/labstack/gommon/log"
 	"math"
+	"path"
 	"strings"
 )
 
@@ -52,6 +53,75 @@ type Arith_substring struct {
 	ans    string
 	length int
 }
+type Arith_nnum struct {
+	num  []int
+	num2 []int
+	ans  []int
+}
+type Arith_clean struct {
+	path    string
+	relPath string
+}
+type Arith_VaildStack struct {
+	pushed []int //12345
+	poped  []int //32154
+}
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
+
+func (p *ListNode) swapTwoNode(root *ListNode) *ListNode {
+	if root.Next == nil {
+		return root
+	}
+	hair := ListNode{}
+	hair.Next = root
+	firstNode := root
+	secondNood := root.Next
+	node := root.Next
+	head := &hair
+	for node != nil {
+		node = secondNood.Next
+		log.Info("第", +1, "次交换：first: ", firstNode.Val, "，second: ", secondNood.Val)
+		head.Next = secondNood
+		secondNood.Next = firstNode
+		firstNode.Next = node
+		if node != nil {
+			head = firstNode
+			secondNood = node.Next
+			firstNode = node
+			node = secondNood
+		}
+		log.Info("第", +1, "次交换后：first: ", firstNode.Val, "，second: ", secondNood.Val)
+	}
+
+	return hair.Next
+
+}
+func (p *Arith_VaildStack) validateStackSequences() bool {
+	stack := []int{}
+	for i := 0; i < len(p.pushed); i++ {
+		stack = append(stack, p.pushed[i])
+		for p.poped[0] == stack[len(stack)-1] {
+			stack = stack[:len(stack)-1]
+			//copy(stack, stack[:len(stack)-1])
+			//stack = append()
+			p.poped = p.poped[1:]
+			//copy(p.poped, p.poped[1:])
+			if len(stack) == 0 {
+				break
+			}
+		}
+	}
+	if len(stack) == 0 && len(p.poped) == 0 {
+		return true
+	}
+	return false
+}
+func (p *Arith_clean) LeetcodeClean() {
+	p.relPath = path.Clean(p.path)
+}
 
 func (p *Arith_substring) SubstringFromLongTew() int {
 	sigle := make(map[string]int)
@@ -90,11 +160,6 @@ func (p *Arith_substring) SubstringFromLong() string {
 	}
 	log.Info("string is :", p.ans)
 	return p.ans
-}
-type Arith_nnum struct {
-	num  []int
-	num2 []int
-	ans  []int
 }
 
 func (p *Arith_nnum) MergeTwoNum() []int {

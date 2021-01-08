@@ -1,6 +1,7 @@
 package arith
 
 import (
+	"container/list"
 	"fmt"
 	"github.com/labstack/gommon/log"
 	"math"
@@ -69,6 +70,44 @@ type Arith_VaildStack struct {
 type ListNode struct {
 	Val  int
 	Next *ListNode
+}
+type Lru struct {
+	LruCache map[int]*list.Element
+	LruList  *list.List
+	Len      int
+}
+type Point struct {
+	key   int
+	value string
+}
+
+func (l *Lru) Get(n int) string {
+	element, ok := l.LruCache[n]
+	if ok {
+		l.LruList.MoveToFront(element)
+		return element.Value.(Point).value
+	}
+	return "nil"
+}
+func (l Lru) Put(n int, str string) {
+	ele, ok := l.LruCache[n]
+	if ok {
+		l.LruList.MoveToFront(ele)
+		ele.Value = Point{
+			key:   n,
+			value: str,
+		}
+	} else {
+		if l.LruList.Len() == l.Len {
+			delete(l.LruCache, l.LruList.Back().Value.(Point).key)
+			l.LruList.Remove(l.LruList.Back())
+		}
+		l.LruList.PushFront(Point{
+			key:   n,
+			value: str,
+		})
+		l.LruCache[n] = l.LruList.Front()
+	}
 }
 
 func (p *ListNode) ReverseList(head *ListNode) *ListNode {

@@ -71,6 +71,33 @@ type ListNode struct {
 	Next *ListNode
 }
 
+func (p *ListNode) ReverseList(head *ListNode) *ListNode {
+	var foot *ListNode = nil
+	node := head
+	next := node.Next
+	for node != nil {
+		log.Info("Start node: ", node.Val)
+		node.Next = foot
+		foot = node
+		node = next
+		if next != nil {
+			next = next.Next
+		}
+	}
+	return foot
+}
+func (p *ListNode) getKthFromEnd(head *ListNode, k int) *ListNode {
+	first := head
+	second := head
+	for i := 0; i < k; i++ {
+		first = first.Next
+	}
+	for first != nil {
+		first = first.Next
+		second = second.Next
+	}
+	return second
+}
 func (p *ListNode) swapTwoNode(root *ListNode) *ListNode {
 	if root.Next == nil {
 		return root

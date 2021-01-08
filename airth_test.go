@@ -43,6 +43,19 @@ func TestListNode(t *testing.T) {
 	}
 	head.swapTwoNode(&head)
 }
+func TestListNode_ReverseList(t *testing.T) {
+	arith := ListNode{
+		Val: 1,
+		Next: &ListNode{
+			Val: 2,
+			Next: &ListNode{
+				Val:  3,
+				Next: nil,
+			},
+		},
+	}
+	arith.ReverseList(&arith)
+}
 func TestArith_lecode103_Cecode103(t *testing.T) {
 	arith := Arith_lecode103{
 		root: &TreeNode{

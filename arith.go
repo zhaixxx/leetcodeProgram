@@ -80,7 +80,27 @@ type Point struct {
 	key   int
 	value string
 }
+type Arith_Num struct {
+	num [3]int
+}
 
+func (p *Arith_Num) ThreeSum() {
+
+}
+func (p *Arith_Num) QuickSort(low, high int) {
+	if low < high {
+		mid := 0
+		if len(p.num) >= high {
+			mid = quicksort(p.num[low:high]) + low
+		} else {
+			mid = quicksort(p.num[low:high+1]) + low
+		}
+
+		p.QuickSort(low, mid-1)
+		p.QuickSort(mid+1, high)
+	}
+
+}
 func (l *Lru) Get(n int) string {
 	element, ok := l.LruCache[n]
 	if ok {

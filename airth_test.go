@@ -2,6 +2,7 @@ package arith
 
 import (
 	"fmt"
+	"github.com/labstack/gommon/log"
 	"testing"
 )
 
@@ -32,6 +33,13 @@ func TestArith_profit_Leetcode122(t *testing.T) {
 		ans:    0,
 	}
 	arith.Leetcode122()
+}
+func TestArith_Num_QuickSort(t *testing.T) {
+	airth := Arith_Num{
+		num: [3]int{3, 1, 1},
+	}
+	airth.QuickSort(0, len(airth.num))
+	log.Info(airth.num)
 }
 func TestListNode(t *testing.T) {
 	head := ListNode{
